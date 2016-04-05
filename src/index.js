@@ -153,7 +153,10 @@ function getWelcomeResponse(response) {
  */
 function handleLastActivityRequest(intent, session, response) {
 
-    var prefixContent = "<p>Your last Nike Plus activity </p>";
+    var prefixContent = "<p>Your latest Nike Plus activity </p>";
+    var repromptText = "With Nike Plus, you can track your activity and performance data. ";            
+    var cardTitle = "Latest Nike Plus Activity";
+    var cardContent = "This is your last Nike Plus Activity";
 
     getLastActivityFromNikePlus(ACCESS_TOKEN, function (activity) {
         
@@ -166,7 +169,7 @@ function handleLastActivityRequest(intent, session, response) {
             var typeText = activity.activityType;
 
             //date and time
-            var activityDate = Date(activity.startTime); 
+            var activityDate = new Date(activity.startTime);
             var dateText =  DAYS[activityDate.getDay()] + " "
                         + activityDate.getDate() + " " + MONTHS[activityDate.getMonth()] + " "
                         + activityDate.getFullYear() + " at " + activityDate.getHours() + " "
@@ -174,7 +177,7 @@ function handleLastActivityRequest(intent, session, response) {
 
             //duration
             var durationText = "";
-            durationSplit = (activityDate.metricSummary.duration).split(':');
+            durationSplit = (activity.metricSummary.duration).split(':');
             if (durationSplit[0] == 0 ) {
                 durationText = durationSplit[1] + " minutes and " 
                                 + durationSplit[2] + " seconds"
@@ -185,13 +188,13 @@ function handleLastActivityRequest(intent, session, response) {
             }
 
             //distance
-            distanceText = (activity.metricSummary.distance).toFixed(2);
+            distanceText = (parseFloat(activity.metricSummary.distance)).toFixed(2);
 
             speechText = prefixContent + 
                             " was a " + typeText +
                             " on " + dateText +
-                            " for " + durationText +
-                            " and a distance of " + distanceText + " kilometers";
+                            " for " + durationText + ". "
+                            " Your total distance was " + distanceText + " kilometers. ";
 
             var speechOutput = {
                 speech: "<speak>" + speechText + "</speak>",
@@ -219,7 +222,7 @@ function getLastActivityFromNikePlus(access_token, eventCallback) {
         });
 
         res.on('end', function () {
-            console.log("getLastActivityFromNikePlus body: " + body);
+            //console.log("getLastActivityFromNikePlus body: " + body);
             var resultActivity = parseLastActivityJson(body);
             eventCallback(resultActivity);
         });
@@ -229,10 +232,12 @@ function getLastActivityFromNikePlus(access_token, eventCallback) {
 }
 
 function parseLastActivityJson(inputText) {    
-    var retActivity;
+    var retActivity = {};
 
-    if (inputText.data.length > 0) {
-        retActivity = inputText.data[0];  
+    jsonText = JSON.parse(inputText);
+
+    if (jsonText.data.length > 0) {
+        retActivity = jsonText.data[0];
     }
     
     return retActivity;
