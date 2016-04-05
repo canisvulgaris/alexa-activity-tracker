@@ -13,6 +13,12 @@
  * my last three runs
  */
 
+/**
+ * TO DO:
+ * renew access token
+ */
+
+
 
 var APP_ID = undefined; //replace with 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';
 
