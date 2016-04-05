@@ -1,0 +1,210 @@
+{
+  "session": {
+    "sessionId": "SessionId.72aaa5f6-3822-48c6-9b2a-beb9f8946bab",
+    "application": {
+      "applicationId": "amzn1.echo-sdk-ams.app.ed45fe3b-b032-438e-89d9-eb84d73357a9"
+    },
+    "attributes": {
+      "array": [
+        {
+          "links": [
+            {
+              "rel": "self",
+              "href": "https://api.nike.com/v1/me/sport/activities/6707000000003654994670022078119841936605"
+            }
+          ],
+          "activityId": "6707000000003654994670022078119841936605",
+          "activityType": "RUN",
+          "startTime": "2016-02-29T01:16:48Z",
+          "activityTimeZone": "Etc/GMT+5",
+          "status": "COMPLETE",
+          "deviceType": "GPSANDROID",
+          "metricSummary": {
+            "calories": "222",
+            "fuel": "718",
+            "distance": "2.946645736694336",
+            "steps": "2732",
+            "duration": "0:18:54.000"
+          },
+          "tags": [
+            {
+              "tagType": "NOTE"
+            },
+            {
+              "tagType": "TEMPERATURE",
+              "tagValue": "TEMPERATURE"
+            },
+            {
+              "tagType": "WEATHER",
+              "tagValue": "SUNNY"
+            },
+            {
+              "tagType": "EMOTION",
+              "tagValue": "AMPED"
+            },
+            {
+              "tagType": "TERRAIN",
+              "tagValue": "AMPED"
+            },
+            {
+              "tagType": "LOCATION",
+              "tagValue": "OUTDOORS"
+            }
+          ],
+          "metrics": []
+        },
+        {
+          "links": [
+            {
+              "rel": "self",
+              "href": "https://api.nike.com/v1/me/sport/activities/bb7b8fb6-25e1-4f57-a45f-6c4e39b0680d"
+            }
+          ],
+          "activityId": "bb7b8fb6-25e1-4f57-a45f-6c4e39b0680d",
+          "activityType": "ALL_DAY",
+          "startTime": "2016-02-28T05:00:00Z",
+          "activityTimeZone": "Etc/GMT+5",
+          "status": "IN_PROGRESS",
+          "deviceType": "GPSANDROID",
+          "metricSummary": {
+            "calories": "0",
+            "fuel": "718",
+            "distance": "0.0",
+            "steps": "0",
+            "duration": "0:00:00.000"
+          },
+          "tags": [],
+          "metrics": []
+        },
+        {
+          "links": [
+            {
+              "rel": "self",
+              "href": "https://api.nike.com/v1/me/sport/activities/6183000000004149433910022078138552376591"
+            }
+          ],
+          "activityId": "6183000000004149433910022078138552376591",
+          "activityType": "RUN",
+          "startTime": "2016-02-20T23:12:01Z",
+          "activityTimeZone": "Etc/GMT+5",
+          "status": "COMPLETE",
+          "deviceType": "GPSANDROID",
+          "metricSummary": {
+            "calories": "362",
+            "fuel": "1191",
+            "distance": "4.851781368255615",
+            "steps": "4241",
+            "duration": "0:29:49.000"
+          },
+          "tags": [
+            {
+              "tagType": "TERRAIN",
+              "tagValue": "AMPED"
+            },
+            {
+              "tagType": "EMOTION",
+              "tagValue": "AMPED"
+            },
+            {
+              "tagType": "WEATHER",
+              "tagValue": "AMPED"
+            },
+            {
+              "tagType": "NOTE"
+            },
+            {
+              "tagType": "LOCATION",
+              "tagValue": "OUTDOORS"
+            }
+          ],
+          "metrics": []
+        },
+        {
+          "links": [
+            {
+              "rel": "self",
+              "href": "https://api.nike.com/v1/me/sport/activities/63aba785-7d6f-4da1-aed9-717e6314e327"
+            }
+          ],
+          "activityId": "63aba785-7d6f-4da1-aed9-717e6314e327",
+          "activityType": "ALL_DAY",
+          "startTime": "2016-02-20T05:00:00Z",
+          "activityTimeZone": "Etc/GMT+5",
+          "status": "IN_PROGRESS",
+          "deviceType": "GPSANDROID",
+          "metricSummary": {
+            "calories": "0",
+            "fuel": "1191",
+            "distance": "0.0",
+            "steps": "0",
+            "duration": "0:00:00.000"
+          },
+          "tags": [],
+          "metrics": []
+        },
+        {
+          "links": [
+            {
+              "rel": "self",
+              "href": "https://api.nike.com/v1/me/sport/activities/1992000000014339752790022078200305498988"
+            }
+          ],
+          "activityId": "1992000000014339752790022078200305498988",
+          "activityType": "RUN",
+          "startTime": "2016-01-16T22:09:39Z",
+          "activityTimeZone": "Etc/GMT+5",
+          "status": "COMPLETE",
+          "deviceType": "GPSANDROID",
+          "metricSummary": {
+            "calories": "307",
+            "fuel": "1000",
+            "distance": "3.997274875640869",
+            "steps": "3452",
+            "duration": "0:23:30.000"
+          },
+          "tags": [
+            {
+              "tagType": "NOTE"
+            },
+            {
+              "tagType": "LOCATION",
+              "tagValue": "OUTDOORS"
+            },
+            {
+              "tagType": "TERRAIN",
+              "tagValue": "AMPED"
+            },
+            {
+              "tagType": "WEATHER",
+              "tagValue": "CLOUDY"
+            },
+            {
+              "tagType": "EMOTION",
+              "tagValue": "AMPED"
+            },
+            {
+              "tagType": "TEMPERATURE",
+              "tagValue": "TEMPERATURE"
+            }
+          ],
+          "metrics": []
+        }
+      ],
+      "index": 1
+    },
+    "user": {
+      "userId": "amzn1.ask.account.AFP3ZWPOS2BGJR7OWJZ3DHPKMOMNWY4AY66FUR7ILBWANIHQN73QHZA5K2Y67OVSBOL5FYICN73GRD6TNYX47HTUMXILN3KFIYMOOS7OKREF37UZCF34XSWQYRXL526IQB2IXDUSIR4JRR63RR2R5BENTGPHYENFS3HNQ32VWD7ISVSC5243MNYA4VD6V5APOUDNFDQBWCJWWGI"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.58035d5d-2a63-4163-8084-34fd711dbff8",
+    "timestamp": "2016-04-05T07:19:12Z",
+    "intent": {
+      "name": "GetNextActivityIntent",
+      "slots": {}
+    }
+  },
+  "version": "1.0"
+}
