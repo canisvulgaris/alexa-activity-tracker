@@ -153,7 +153,7 @@ function getWelcomeResponse(response) {
  */
 function handleLastActivityRequest(intent, session, response) {
 
-    var prefixContent = "<p>Your latest Nike Plus activity </p>";
+    var prefixContent = "Your latest Nike Plus activity ";
     var repromptText = "With Nike Plus, you can track your activity and performance data. ";            
     var cardTitle = "Latest Nike Plus Activity";
     var cardContent = "This is your last Nike Plus Activity";
@@ -170,9 +170,9 @@ function handleLastActivityRequest(intent, session, response) {
 
             //date and time
             var activityDate = new Date(activity.startTime);
-            var dateText =  DAYS[activityDate.getDay()] + " "
-                        + activityDate.getDate() + " " + MONTHS[activityDate.getMonth()] + " "
-                        + activityDate.getFullYear() + " at " + activityDate.getHours() + " "
+            var dateText =  MONTHS[activityDate.getMonth()] + " "
+                        + activityDate.getDate() + ", " +
+                        + activityDate.getFullYear() + ", at " + activityDate.getHours() + " "
                         + activityDate.getMinutes();
 
             //duration
@@ -190,11 +190,11 @@ function handleLastActivityRequest(intent, session, response) {
             //distance
             distanceText = (parseFloat(activity.metricSummary.distance)).toFixed(2);
 
-            speechText = prefixContent + 
+            speechText = "<p>" + prefixContent + 
                             " was a " + typeText +
-                            " on " + dateText +
-                            " for " + durationText + ". "
-                            " Your total distance was " + distanceText + " kilometers. ";
+                            " on " + dateText + ", " + 
+                            " with a duration of " + durationText + ", " + 
+                            " and a total distance of " + distanceText + " kilometers </p>";
 
             var speechOutput = {
                 speech: "<speak>" + speechText + "</speak>",
