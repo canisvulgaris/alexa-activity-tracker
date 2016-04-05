@@ -205,7 +205,7 @@ function handleNextActivityRequest(intent, session, response) {
         speechText = "No more Nike Plus Activities found.";
         cardContent = "No more Nike Plus Activities found.";
     } else {
-        activityText = parseActivityIntoSpeech(result[sessionAttributes.index]);
+        activityText = parseActivityIntoSpeech(prefixContent, result[sessionAttributes.index]);
         speechText = "<p>" + activityText + "</p> ";
         cardContent = cardContent + activityText + " ";
         sessionAttributes.index++;
