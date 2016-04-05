@@ -8,6 +8,11 @@ GetLastActivityIntent what was my last activity
 GetLastActivityIntent what was my latest activity
 GetLastActivityIntent what was my most recent activity
 
+GetNextActivityIntent yes
+GetNextActivityIntent yup
+GetNextActivityIntent sure
+GetNextActivityIntent yes please
+
 AMAZON.StopIntent no
 AMAZON.StopIntent nope
 AMAZON.StopIntent thanks
