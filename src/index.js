@@ -23,6 +23,7 @@
 var APP_ID = undefined; //replace with 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';
 
 var https = require('https');
+var querystring = require('querystring');
 
 /**
  * The AlexaSkill Module that has the AlexaSkill prototype and helper functions
@@ -50,7 +51,7 @@ var apiPrefix = 'https://api.nike.com';
 var apiListActivities = '/v1/me/sport/activities';
 var apiUserTotals = '/v1/me/sport';
 
-var ACCESS_TOKEN = 'gAycx9LNkxR0eQGIkA9sWFTCvAJu';
+var ACCESS_TOKEN = 'WWdu50yjRElI2JAKj4FBdsatbRvU';
 
 var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 var MONTHS = ['January', 'February', 'March', 'Aril', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -169,7 +170,8 @@ function handleLastActivityRequest(intent, session, response) {
     var sessionAttributes = {};
     sessionAttributes.index = 1;
 
-    getLastActivityFromNikePlus(ACCESS_TOKEN, function (activityArr) {
+    console.log("about to call getAccessTokenFromNikePlus");
+    getAccessTokenFromNikePlus(function (activityArr) {
 
         sessionAttributes.array = activityArr;
         session.attributes = sessionAttributes;
@@ -271,27 +273,86 @@ function parseActivityIntoSpeech(prefix, activity) {
     return speechText;
 }
 
-
 function getLastActivityFromNikePlus(access_token, eventCallback) {
+    console.log("getLastActivityFromNikePlus called: " + access_token);
+
     var url = apiPrefix + apiListActivities + '?access_token=' + access_token;
 
-    console.log("getLastActivityFromNikePlus url: " + url);
-
     https.get(url, function(res) {
+                var body = '';
+
+                res.on('data', function (chunk) {
+                    body += chunk;
+                });
+
+                res.on('end', function () {
+                    console.log("getLastActivityFromNikePlus body: " + body);
+                    var resultActivity = parseLastActivityJson(body);
+                    eventCallback(resultActivity);
+                }   );
+            }).on('error', function (e) {
+                console.log("Got error: ", e);
+            });
+
+    
+}
+
+
+function getAccessTokenFromNikePlus(eventCallback) {
+
+    var data = querystring.stringify({
+      username: "nauman.hafiz@rga.com",
+      password: "J4ck4555"
+    });
+
+    var headers = {
+        'Host' : 'developer.nike.com',
+        'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
+        'X-Requested-With' : 'XMLHttpRequest',
+        'Content-Length' : Buffer.byteLength(data)
+    };    
+
+    var options = {
+        'host' : 'developer.nike.com',
+        'port' : '443',
+        'path' : '/services/login',
+        'method' : 'POST',
+        'headers' : headers        
+    }
+
+    var req = https.request(options, function(res) {
+        res.setEncoding('utf8');
         var body = '';
 
-        res.on('data', function (chunk) {
+        res.on('data', function (chunk) {            
             body += chunk;
         });
 
         res.on('end', function () {
-            console.log("getLastActivityFromNikePlus body: " + body);
-            var resultActivity = parseLastActivityJson(body);
-            eventCallback(resultActivity);
+            var token = parseAccessTokenJson(body);
+            getLastActivityFromNikePlus(token, eventCallback);
         });
     }).on('error', function (e) {
         console.log("Got error: ", e);
     });
+
+    req.write(data);
+    req.end();
+}
+
+function parseAccessTokenJson(inputText) {
+    console.log("parseAccessTokenJson called: " + inputText);
+     var access_token = "";
+
+    jsonText = JSON.parse(inputText);
+
+    if (jsonText.length != "") {
+        access_token = jsonText.access_token;
+    }
+    
+    console.log("access_token: " + access_token);
+    return access_token;
+
 }
 
 function parseLastActivityJson(inputText) {  
