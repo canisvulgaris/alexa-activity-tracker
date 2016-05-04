@@ -1,17 +1,30 @@
 GetLastActivityIntent get my last activity
-GetLastActivityIntent get my latest activity
-GetLastActivityIntent get my most recent activity
-GetLastActivityIntent give me my last activity
-GetLastActivityIntent give me my latest activity
-GetLastActivityIntent give me my most recent activity
+GetLastActivityIntent to get my last activity
 GetLastActivityIntent what was my last activity
+GetLastActivityIntent for my last activity
+GetLastActivityIntent get my latest activity
+GetLastActivityIntent to get my latest activity
 GetLastActivityIntent what was my latest activity
+GetLastActivityIntent for my latest activity
+GetLastActivityIntent get my most recent activity
+GetLastActivityIntent to get my most recent activity
 GetLastActivityIntent what was my most recent activity
+GetLastActivityIntent for my most recent activity
+GetLastActivityIntent give me my last activity
+GetLastActivityIntent to give me my last activity
+GetLastActivityIntent give me my latest activity
+GetLastActivityIntent to give me my latest activity
+GetLastActivityIntent give me my most recent activity
+GetLastActivityIntent to give me my most recent activity
 
 GetNextActivityIntent yes
 GetNextActivityIntent yup
+GetNextActivityIntent yep
 GetNextActivityIntent sure
+GetNextActivityIntent sure thing
 GetNextActivityIntent yes please
+GetNextActivityIntent please
+GetNextActivityIntent go ahead
 
 AMAZON.StopIntent no
 AMAZON.StopIntent nope
@@ -20,3 +33,7 @@ AMAZON.StopIntent no thanks
 AMAZON.StopIntent no thank you
 AMAZON.StopIntent stop
 AMAZON.StopIntent thats enough
+AMAZON.StopIntent shut it
+AMAZON.StopIntent shut up
+AMAZON.StopIntent please stop
+AMAZON.StopIntent no way
