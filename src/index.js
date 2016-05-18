@@ -32,17 +32,17 @@ var AlexaSkill = require('./AlexaSkill');
 
 /**
  * API SAMPLES
- * 
+ *
  * Get Access Token:
  * curl -H "Host: developer.nike.com" -H "Content-Type: application/x-www-form-urlencoded; charset=UTF-8" -H "X-Requested-With: XMLHttpRequest" -H "Referer: https://developer.nike.com/content/nike-developer-cq/us/en_us/index/login.html"  -H "Pragma: no-cache" -H "Cache-Control: no-cache" --data-binary "username=nauman.hafiz%40rga.com&password={PASSWORD}" --compressed https://developer.nike.com/services/login
  *
  * Get Activities:
- * curl 'https://api.nike.com/v1/me/sport/activities?access_token={access_token}' -H 'Accept: application/json' 
+ * curl 'https://api.nike.com/v1/me/sport/activities?access_token={access_token}' -H 'Accept: application/json'
  * sample: curl 'https://api.nike.com/v1/me/sport/activities?access_token=HXSr7AIxJNmqz4ZLnmoCNVchuZRK&_=1459827762620' -H 'Pragma: no-cache' -H 'DNT: 1' -H 'Accept-Encoding: gzip, deflate, sdch' -H 'Accept-Language: en-US,en;q=0.8,ru;q=0.6,es;q=0.4,pt;q=0.2'  -H 'Accept: application/json' -H 'Referer: https://api.nike.com/nikeplus/js/v2/iframe.html'  -H 'Connection: keep-alive' -H 'Cache-Control: no-cache' --compressed
  * docs: https://developer.nike.com/documentation/api-docs/activity-services/list-activities.html
  *
  * User Totals
- * curl 'https://api.nike.com/v1/me/sport?access_token={access_token} -H 'Accept: application/json' 
+ * curl 'https://api.nike.com/v1/me/sport?access_token={access_token} -H 'Accept: application/json'
  * sample: curl 'https://api.nike.com/v1/me/sport?access_token=HXSr7AIxJNmqz4ZLnmoCNVchuZRK&_=1459827948820' -H 'Pragma: no-cache' -H 'DNT: 1' -H 'Accept-Encoding: gzip, deflate, sdch' -H 'Accept-Language: en-US,en;q=0.8,ru;q=0.6,es;q=0.4,pt;q=0.2'  -H 'Accept: application/json' -H 'Referer: https://api.nike.com/nikeplus/js/v2/iframe.html' -H 'Connection: keep-alive' -H 'Cache-Control: no-cache' --compressed
  * docs: https://developer.nike.com/documentation/api-docs/activity-services/aggregate-sport-data.html
  *
@@ -175,7 +175,7 @@ function handleLastActivityRequest(intent, session, response) {
 
         sessionAttributes.array = activityArr;
         session.attributes = sessionAttributes;
-        
+
         if ( activityArr == {} ) {
             speechText = "No previous Nike Plus Activities found.";
             cardContent = speechText;
@@ -183,7 +183,7 @@ function handleLastActivityRequest(intent, session, response) {
         } else {
             speechText = parseActivityIntoSpeech(prefixContent, activityArr[0]) +
                         "<p>Do you want your next Activity?</p>";
-            
+
             var speechOutput = {
                 speech: "<speak>" + speechText + "</speak>",
                 type: AlexaSkill.speechOutputType.SSML
@@ -217,7 +217,7 @@ function handleNextActivityRequest(intent, session, response) {
         speechText = "<p>" + activityText + "</p> ";
         cardContent = cardContent + activityText + " ";
         sessionAttributes.index++;
-    
+
         if (sessionAttributes.index < result.length) {
             speechText = speechText + " Do you want your next Activity?";
             cardContent = cardContent + " Do you want your next Activity?";
@@ -253,21 +253,21 @@ function parseActivityIntoSpeech(prefix, activity) {
     var durationText = "";
     durationSplit = (activity.metricSummary.duration).split(':');
     if (durationSplit[0] == 0 ) {
-        durationText = durationSplit[1] + " minutes and " 
+        durationText = durationSplit[1] + " minutes and "
                         + durationSplit[2] + " seconds"
     } else {
-        durationText = durationSplit[0] + " hours " 
-                        + durationSplit[1] + " minutes and " 
+        durationText = durationSplit[0] + " hours "
+                        + durationSplit[1] + " minutes and "
                         + durationSplit[2] + " seconds"
     }
 
     //distance
     distanceText = (parseFloat(activity.metricSummary.distance)).toFixed(2);
 
-    speechText = "<p>" + prefix + 
+    speechText = "<p>" + prefix +
                     " was a " + typeText +
-                    " on " + dateText + ", " + 
-                    " with a duration of " + durationText + ", " + 
+                    " on " + dateText + ", " +
+                    " with a duration of " + durationText + ", " +
                     " and a total distance of " + distanceText + " kilometers </p>";
 
     return speechText;
@@ -294,15 +294,15 @@ function getLastActivityFromNikePlus(access_token, eventCallback) {
                 console.log("Got error: ", e);
             });
 
-    
+
 }
 
 
 function getAccessTokenFromNikePlus(eventCallback) {
 
     var data = querystring.stringify({
-      username: "nauman.hafiz@rga.com",
-      password: "J4ck4555"
+      username: "enter@email.com",
+      password: "enter_password"
     });
 
     var headers = {
@@ -310,21 +310,21 @@ function getAccessTokenFromNikePlus(eventCallback) {
         'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
         'X-Requested-With' : 'XMLHttpRequest',
         'Content-Length' : Buffer.byteLength(data)
-    };    
+    };
 
     var options = {
         'host' : 'developer.nike.com',
         'port' : '443',
         'path' : '/services/login',
         'method' : 'POST',
-        'headers' : headers        
+        'headers' : headers
     }
 
     var req = https.request(options, function(res) {
         res.setEncoding('utf8');
         var body = '';
 
-        res.on('data', function (chunk) {            
+        res.on('data', function (chunk) {
             body += chunk;
         });
 
@@ -349,13 +349,13 @@ function parseAccessTokenJson(inputText) {
     if (jsonText.length != "") {
         access_token = jsonText.access_token;
     }
-    
+
     console.log("access_token: " + access_token);
     return access_token;
 
 }
 
-function parseLastActivityJson(inputText) {  
+function parseLastActivityJson(inputText) {
     var retActivity = {};
 
     jsonText = JSON.parse(inputText);
@@ -363,7 +363,7 @@ function parseLastActivityJson(inputText) {
     if (jsonText.data.length > 0) {
         retActivity = jsonText.data;
     }
-    
+
     return retActivity;
 }
 
@@ -373,4 +373,3 @@ exports.handler = function (event, context) {
     var skill = new ActivityTrackerSkill();
     skill.execute(event, context);
 };
-
